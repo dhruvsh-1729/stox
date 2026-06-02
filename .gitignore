@@ -38,10 +38,9 @@ data/processed/
 !data/nifty_midcap.csv
 !data/nifty_smallcap.csv
 
-# Screen outputs (regeneratable)
-*_screen.csv
-top_rallies_clean.csv
-pre_rally_analysis.csv
+# Screen outputs at project root (regeneratable; screens write CSVs to root).
+# Matches only top-level CSVs, so data/*.csv stays tracked.
+/*.csv
 
 # ---------------------------------------------------------------------------
 # Python
