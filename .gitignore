@@ -1,0 +1,107 @@
+# ---------------------------------------------------------------------------
+# Secrets & credentials  (NEVER commit these)
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+cache/access_token.txt
+**/access_token.txt
+**/constants.py.local
+*.pem
+*.key
+
+# ---------------------------------------------------------------------------
+# Local data stores & caches (large, regenerable)
+# ---------------------------------------------------------------------------
+cache/
+**/cache/
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.parquet
+*.feather
+
+# Downloaded market data / results / equity curves
+results/
+**/results/
+data/parquet/
+data/raw/
+data/processed/
+**/equity_curves/
+**/exports/
+
+# But keep small reference CSVs that ship with the repo
+!data/nifty500.csv
+!data/nifty_midcap.csv
+!data/nifty_smallcap.csv
+
+# Screen outputs (regeneratable)
+*_screen.csv
+top_rallies_clean.csv
+pre_rally_analysis.csv
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env-venv/
+ENV/
+
+# ---------------------------------------------------------------------------
+# Jupyter / IPython
+# ---------------------------------------------------------------------------
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ---------------------------------------------------------------------------
+# Editors / IDEs
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+
+# ---------------------------------------------------------------------------
+# OS junk
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# Logs & temp
+# ---------------------------------------------------------------------------
+*.log
+logs/
+tmp/
+*.tmp
+*.bak
+
