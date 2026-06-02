@@ -28,11 +28,14 @@ python -m engine.kite_data --backfill
 
 All screens read from `cache/market.duckdb` and need no live token.
 
+All commands below are run from the project root with `python -m …` so the
+`engine` package is on the import path.
+
 ## Building the universe
 
 ```bash
-python build_universe.py        # full clean NSE-EQ list -> data/nifty500.csv
-python make_liquid_universe.py  # top 500 most-liquid names (needs cache)
+python -m scripts.build_universe         # full clean NSE-EQ list -> data/nifty500.csv
+python -m scripts.make_liquid_universe   # top 500 most-liquid names (needs cache)
 ```
 
 ## Screens
@@ -41,32 +44,34 @@ Each script writes a CSV you can hand off to other research tools.
 
 | Script | What it does | Output |
 |---|---|---|
-| `rallies.py`  | Biggest 2-month rallies among liquid mainboard names | `top_rallies_clean.csv` |
-| `current.py`  | Stocks whose current profile matches the pre-rally winner profile (volatility/discount screen) | `current_screen.csv` |
-| `analysis.py` | Compares pre-rally indicators of past winners vs non-winners (diagnostic, not predictive) | `pre_rally_analysis.csv` |
+| `screens/rallies.py`  | Biggest 2-month rallies among liquid mainboard names | `top_rallies_clean.csv` |
+| `screens/current.py`  | Stocks whose current profile matches the pre-rally winner profile (volatility/discount screen) | `current_screen.csv` |
+| `screens/analysis.py` | Compares pre-rally indicators of past winners vs non-winners (diagnostic, not predictive) | `pre_rally_analysis.csv` |
 
 Run them like:
 
 ```bash
-python rallies.py
-python current.py
-python analysis.py
+python -m screens.rallies
+python -m screens.current
+python -m screens.analysis
 ```
 
 ## Layout
 
 ```
 stox/
-  engine/
-    config.py       # paths, env loading
-    kite_data.py    # Kite login + historical fetch + DuckDB cache
-    universe.py     # universe loading
-    indicators.py   # RSI / SMA / EMA / ATR / Bollinger / MACD / zscore
-  build_universe.py
-  make_liquid_universe.py
-  rallies.py
-  current.py
-  analysis.py
+  engine/                     # shared library
+    config.py                 # paths, env loading
+    kite_data.py              # Kite login + historical fetch + DuckDB cache
+    universe.py               # universe loading
+    indicators.py             # RSI / SMA / EMA / ATR / Bollinger / MACD / zscore
+  scripts/                    # one-off prep utilities
+    build_universe.py
+    make_liquid_universe.py
+  screens/                    # the things you actually run
+    rallies.py
+    current.py
+    analysis.py
   data/nifty500.csv
   requirements.txt
 ```
